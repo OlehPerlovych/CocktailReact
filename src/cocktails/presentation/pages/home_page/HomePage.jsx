@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {Button, H1} from "../../../../general/style/components/buttons";
 import * as Icons from "react-bootstrap-icons";
 import CocktailComponent from "../../../../general/component/CocktailComponent";
@@ -6,22 +6,26 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCategoriesAction, getRandomCocktailAction} from "../../redux/asyncActions";
 
 const HomePage = () => {
-    const cocktail = useSelector(store => store.cocktailRandom);
     const dispatch = useDispatch();
+    const cocktail = useSelector(store => store.cocktailRandom);
 
-    useEffect(()=>{
-        getRandomCocktailAction(dispatch);
-        getCategoriesAction(dispatch);
-    },[]);
+    useEffect(() => {
+        dispatch(getRandomCocktailAction());
+        dispatch(getCategoriesAction());
+    }, []);
 
-    if (cocktail){
-        console.log(cocktail);
+    const error = useSelector(store => store.errorMessage);
+    if (error) {
+        return <H1>{error}</H1>
+    }
+
+    if (cocktail) {
         return (
             <>
                 <H1>Home page</H1>
                 <Button className="btn btn-success" onClick={
-                    ()=>{
-                        getRandomCocktailAction(dispatch);
+                    () => {
+                        dispatch(getRandomCocktailAction());
                     }
                 }>
                     <Icons.ArrowClockwise size={20}/> Get random cocktail

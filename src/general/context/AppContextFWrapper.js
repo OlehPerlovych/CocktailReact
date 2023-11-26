@@ -31,7 +31,6 @@ const AppContextFWrapper = ({children}) => {
 
     function getRandomCocktailApi(){
         getRandomCocktail().then((result)=>{
-            console.log(result);
             const resObj = JSON.parse(result);
             const newCocktail = new Cocktail(resObj.drinks[0]);
             setCocktail(newCocktail);
@@ -39,7 +38,6 @@ const AppContextFWrapper = ({children}) => {
     }
     function getCategoriesApi(){
         getCategories().then((result)=>{
-            console.log(result);
             const resObj = JSON.parse(result);
             const categoriesArr = convertCategoryArray(resObj.drinks);
             setCategories(categoriesArr);
@@ -50,7 +48,6 @@ const AppContextFWrapper = ({children}) => {
     * */
     function getByCategoryApi(categoryName){
         getByCategory(categoryName).then((result)=>{
-            console.log(result);
             const resObj = JSON.parse(result);
             const cocktailList = resObj.drinks.map(item => new CocktailShort(item));
             setCategoryCocktails(cocktailList);

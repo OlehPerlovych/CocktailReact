@@ -10,7 +10,7 @@ function CocktailShort(props) {
                 // do some work ...
                 navigate('/cocktail?id=' + props.data.id);
             }}> {/* => <a> */}
-                <img src={props.data.thumb} className="card-img-top"></img>
+                <img src={props.data.thumb} className="card-img-top" alt={props.data.name}/>
                 <div className="card-body">
                     <span className="card-text">{props.data.name}</span>
                 </div>

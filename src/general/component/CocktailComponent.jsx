@@ -11,7 +11,7 @@ function CocktailComponent(props) {
                     <img
                         src={props.cocktail.imageURL}
                         className={style.cocktail_img}
-                        loading="lazy"/>
+                        loading="lazy" alt={props.cocktail.name}/>
                 </div>
                 <h5 className="pt-3">
                     {   (props.cocktail.alcoholic.toLowerCase() === 'alcoholic')?
